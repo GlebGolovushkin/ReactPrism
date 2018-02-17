@@ -12,9 +12,11 @@ class Card extends React.Component{
             }
 
           render(){
-              debugger;
-              if (this.props.team && this.props.InTeam)
+              if (this.props.team && !this.props.InTeam)
               {
+                return(null); 
+              }
+              else {
                 return(
                     <div className="panel panel-default col-lg-3" style={{margin: '1em'}}>
                         <div className="panel-heading">
@@ -24,58 +26,19 @@ class Card extends React.Component{
                         </div>
                         <div className="panel-body row">
                             <div className="col-lg-4" style={{margin: '1em'}}>
-                                <img width="150" src = {this.state.photo}  onClick={this.changeStateInTeam}/>
+                            {
+                                this.props.team?
+                                <img width="150" src = {this.state.photo}  onClick={this.changeStateInTeam}/> :
+                                <img width="150" src = {this.state.photo}/> 
+                            }
                             </div>
-                            <div className="col-md-12 col-md-offset-6">
-                                <button className="btn" onClick={this.changeStateInTeam}>Remove from my team</button>
+                            <div className={this.props.InTeam? "col-md-12 col-md-offset-6" : "col-md-12 col-md-offset-7"}>
+                                <button className="btn" onClick={this.changeStateInTeam}>{this.props.InTeam? "Remove from my team" : "Add to my team"}</button>
                             </div>
                         </div>
                     </div>
                 );
               }
-              else if (this.props.team===false){
-                if (!this.props.InTeam)
-                {
-                      return(
-                          <div className="panel panel-default col-lg-3" style={{margin: '1em'}}>
-                              <div className="panel-heading">
-                                  <div style={{fontSize: '1em', fontWeight: 'bolt'}}>
-                                      {this.props.FirstName + " " + this.props.LastName}
-                                  </div>
-                              </div>
-                              <div className="panel-body row">
-                                  <div className="col-lg-4" style={{margin: '1em'}}>
-                                      <img width="150" src = {this.state.photo} onClick={this.changeStateInTeam} />
-                                  </div>
-                                  <div className="col-md-12 col-md-offset-7">
-                                      <button className="btn" onClick={this.changeStateInTeam}>Add to my team</button>
-                                  </div>
-                              </div>
-                          </div>
-                      );
-                }
-                else if (this.props.InTeam)
-                {
-                    return(
-                        <div className="panel panel-default col-lg-3" style={{margin: '1em'}}>
-                            <div className="panel-heading">
-                                <div style={{fontSize: '1em', fontWeight: 'bolt'}}>
-                                    {this.props.FirstName + " " + this.props.LastName}
-                                </div>
-                            </div>
-                            <div className="panel-body row">
-                                <div className="col-lg-4" style={{margin: '1em'}}>
-                                    <img width="150" src = {this.state.photo}  />
-                                </div>
-                                <div className="col-md-12 col-md-offset-6">
-                                    <button className="btn" onClick={this.changeStateInTeam}>Remove from my team</button>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                }
-            }
-            else return(null);   
           }
         }
 module.exports = Card;

@@ -5,7 +5,6 @@ class Team extends React.Component{
     constructor(props) {
         super(props);
         this.filterPeople = this.filterPeople.bind(this);
-        this.updateTeam = this.updateTeam.bind(this);
         this.state = {teamMembers:this.filterPeople()};
     }
 
@@ -17,16 +16,8 @@ class Team extends React.Component{
         )
     }
 
-    updateTeam(id){
-        this.props.changeStateInTeam(id);
-        var newTeam = this.filterPeople();
-        this.setState(() => ({
-            teamMembers: this.filterPeople()
-          }));
-    }
-
     render(){
-        return <People prismUsers={this.state.teamMembers} changeStateInTeam={this.updateTeam} team={true}/>;
+        return <People prismUsers={this.state.teamMembers} changeStateInTeam={this.props.changeStateInTeam} team={true}/>;
     }
 }
 module.exports = Team;
