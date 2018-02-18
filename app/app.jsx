@@ -59,7 +59,7 @@ class App extends React.Component {
             .then(members => {
                 members.data = members.data.sort(
                     function (a, b) {
-                        return (a.FirstName > b.FirstName) ? 1 : ((b.FirstName > a.FirstName) ? -1 : 0);
+                        return (a.FirstName + " " + a.LastName > b.FirstName + " " + b.LastName) ? 1 : ((b.FirstName + " " + b.LastName > a.FirstName + " " + a.LastName) ? -1 : 0);
                     });
                 this.setState({ prismMembers: members });
             });

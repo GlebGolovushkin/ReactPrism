@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import CardList from '../cardWork/cardList.jsx';
+import CardList from '../employeeCard/cardList.jsx';
 import SearchForm from './searchForm.jsx';
 
 class People extends React.Component {

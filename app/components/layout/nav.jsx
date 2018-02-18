@@ -26,6 +26,9 @@ class Nav extends React.Component{
                     </ul>
                     <ul className="nav navbar-nav navbar-right" style={{paddingRight:50}}>
                         <li>
+                            <img width="50" src ="https://st3.depositphotos.com/1032749/14425/v/450/depositphotos_144256483-stock-illustration-logout-sign-icon.jpg" style={{cursor:'pointer'}} onClick={this.resetSession}></img> 
+                        </li>
+                        <li>
                             <a className="navbar-brand" style={{cursor:'pointer'}} onClick={this.resetSession}><i className="icon-home icon-white"></i> Sign out</a>
                         </li>
                     </ul>

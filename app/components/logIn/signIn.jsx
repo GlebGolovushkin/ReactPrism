@@ -10,12 +10,14 @@ class SignIn extends React.Component{
       }
    
       handleSubmit(e) {
-          this.props.users.forEach(user => {
-              if (user.userName == refs.name.value && user.password == this.refs.pass.value)
-              {
-                  this.props.changeName(name);
-              }
-          });
+        var name = this.refs.name.value;
+        var password = this.refs.pass.value;
+        this.props.users.forEach(user => {
+            if (user.userName == name && user.password == password)
+            {
+                this.props.changeName(name);
+            }
+        });
       }
    
       render() {
