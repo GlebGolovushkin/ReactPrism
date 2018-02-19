@@ -1,21 +1,36 @@
 import React from 'react';
 import Axios from 'axios';
 import {Link, BrowserRouter}  from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as sessionActions from '../../actions/sessionActions.js';
  
 class SignIn extends React.Component{
     constructor(props) {
         super(props);
-        
+        this.state = {
+            users: [
+                {
+                    userName: "Gleb",
+                    password: "123"
+                },
+                {
+                    userName: "Volodya",
+                    password: "1234"
+                },
+
+            ]
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
       }
    
       handleSubmit(e) {
         var name = this.refs.name.value;
         var password = this.refs.pass.value;
-        this.props.users.forEach(user => {
+        this.state.users.forEach(user => {
             if (user.userName == name && user.password == password)
             {
                 this.props.changeName(name);
+                this.props.dispatch(sessionActions.setSessionName(name));
             }
         });
       }
@@ -53,4 +68,11 @@ class SignIn extends React.Component{
         );
       }
 }
-module.exports = SignIn;
+
+function mapStateToProps(state, ownProps){
+    return {
+        sessions: state.sessions
+    };
+}
+
+module.exports = connect(mapStateToProps)(SignIn);
