@@ -5,19 +5,24 @@ class Team extends React.Component{
     constructor(props) {
         super(props);
         this.filterPeople = this.filterPeople.bind(this);
-        this.state = {teamMembers:this.filterPeople()};
+        this.state = {teamMembers:this.filterPeople(this.props.name)};
     }
 
-    filterPeople(){
+    filterPeople(name){
         return this.props.prismMembers.filter(
             function(user){
-                return user.InTeam;
+                if (user.InTeam){
+                return user.InTeam[name];
+                }
+                else {
+                    return false;
+                }
             }
         )
     }
 
     render(){
-        return <People prismUsers={this.state.teamMembers} changeStateInTeam={this.props.changeStateInTeam} team={true}/>;
+        return <People prismUsers={this.state.teamMembers} changeStateInTeam={this.props.changeStateInTeam} name={this.props.name}  team={true}/>;
     }
 }
 module.exports = Team;

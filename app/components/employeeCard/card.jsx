@@ -12,7 +12,7 @@ class Card extends React.Component{
             }
 
           render(){
-              if (this.props.team && !this.props.InTeam)
+              if (this.props.team && !this.props.InTeam[this.props.name])
               {
                 return(null); 
               }
@@ -32,8 +32,8 @@ class Card extends React.Component{
                                 <img width="150" src = {this.state.photo}/> 
                             }
                             </div>
-                            <div className={this.props.InTeam? "col-md-12 col-md-offset-6" : "col-md-12 col-md-offset-7"}>
-                                <button className="btn" onClick={this.changeStateInTeam}>{this.props.InTeam? "Remove from my team" : "Add to my team"}</button>
+                            <div className={this.props.InTeam ? (this.props.InTeam[this.props.name]? "col-md-12 col-md-offset-6" : "col-md-12 col-md-offset-7") : "col-md-12 col-md-offset-7"}>
+                                <button className="btn" onClick={this.changeStateInTeam}>{this.props.InTeam ? (this.props.InTeam[this.props.name]? "Remove from my team" : "Add to my team") : "Add to my team"}</button>
                             </div>
                         </div>
                     </div>

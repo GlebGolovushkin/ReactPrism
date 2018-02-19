@@ -38,11 +38,13 @@ class SignIn extends React.Component{
                                     <label>Password:</label>
                                     <input type="password" ref="pass"/>
                                 </p>
+                                <div className="col-md-7 col-md-offset-3">
                                 <p>
                                     <input type="checkbox" ref="remember" /> 
                                     <label>Remember me</label>
                                 </p>
                                 <button type="submit" className="btn">Sign in</button> 
+                                </div>
                             </form>
                         </div>
                     </div>

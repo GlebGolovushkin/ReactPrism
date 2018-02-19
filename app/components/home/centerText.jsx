@@ -6,7 +6,7 @@ class CenterText extends React.Component {
     }
     render() {
         return (
-            <div className="col-md-4 col-md-offset-4" style={{paddingTop:250}}>
+            <div className="col-md-5 col-md-offset-5" style={{paddingTop:250}}>
                 <h2>{this.props.text}</h2>
             </div>);
     }

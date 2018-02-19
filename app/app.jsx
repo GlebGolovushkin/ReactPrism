@@ -25,7 +25,7 @@ class App extends React.Component {
 
             ], myName: "",
             prismMembers: [],
-            teamMembersNumber: 0
+            teamMembersNumber: {}
         };
         this.sortPrismMembersByName = this.sortPrismMembersByName.bind(this);
         this.changeUserSessionName = this.changeUserSessionName.bind(this);
@@ -35,19 +35,33 @@ class App extends React.Component {
 
     changeUserSessionName(myName) {
         this.setState({ myName });
+        if (myName && !this.state.teamMembersNumber[myName])
+        { 
+            var team = this.state.teamMembersNumber;
+            team[myName] = 0;
+            this.setState({teamMembersNumber : team});
+        }
     }
 
     changeStateInTeam(id) {
         var users = this.state.prismMembers;
         users.data.forEach(user => {
+            if (user.InTeam === null || user.InTeam === undefined)
+            {
+                user.InTeam = {};
+            }
             if (user.Id == id) {
-                if (!user.InTeam) {
-                    user.InTeam = true;
-                    this.setState({ teamMembersNumber: this.state.teamMembersNumber + 1 });
+                if (!user.InTeam[this.state.myName]) {
+                    user.InTeam[this.state.myName] = true;
+                    var team = this.state.teamMembersNumber;
+                    team[this.state.myName]++;
+                    this.setState({ teamMembersNumber: team });
                 }
                 else {
-                    user.InTeam = false;
-                    this.setState({ teamMembersNumber: this.state.teamMembersNumber - 1 });
+                    user.InTeam[this.state.myName] = false;
+                    var team = this.state.teamMembersNumber;
+                    team[this.state.myName]++;
+                    this.setState({ teamMembersNumber: team });
                 }
                 this.setState({ prismMembers: users });
             }
@@ -70,11 +84,11 @@ class App extends React.Component {
             return (
                 <Router>
                     <div>
-                        <Nav changeUserSessionName={this.changeUserSessionName.bind(this)} teamMembersNumber={this.state.teamMembersNumber}/>
+                        <Nav changeUserSessionName={this.changeUserSessionName.bind(this)} teamMembersNumber={this.state.teamMembersNumber[this.state.myName]}/>
                         <Switch>
                             <Route exact path="/" render={(props) => (<Home name={this.state.myName} />)} />
-                            <Route path="/people" render={(props) => (<People prismUsers={this.state.prismMembers.data} changeStateInTeam={this.changeStateInTeam.bind(this)} team={false}/>)} />
-                            <Route path="/team" render={(props) => (<Team prismMembers={this.state.prismMembers.data} changeStateInTeam={this.changeStateInTeam.bind(this)}/>)}  />
+                            <Route path="/people" render={(props) => (<People prismUsers={this.state.prismMembers.data} name={this.state.myName} changeStateInTeam={this.changeStateInTeam.bind(this)} team={false}/>)} />
+                            <Route path="/team" render={(props) => (<Team prismMembers={this.state.prismMembers.data} name={this.state.myName} changeStateInTeam={this.changeStateInTeam.bind(this)}/>)}  />
                             <Route component={NotFound} />
                         </Switch>
                     </div>
