@@ -1,21 +1,20 @@
 import React from 'react';
-import Axios from 'axios';
-import {Link, BrowserRouter}  from 'react-router-dom';
+importer-dom';
  
 class SignIn extends React.Component{
-    constructor(props) {
-        super(props);
+ asdgzcxbv   constructor(props) {
+        sudfper(props);
         
         this.handleSubmit = this.handleSubmit.bind(this);
-      }
-   
-      handleSubmit(e) {
-          var name = this.refs.name.value;
-          var password = this.refs.pass.value;
-          this.props.users.forEach(user => {
-              if (user.userName == name && user.password == password)
-              {
-                  this.props.changeName(name);
+      }zdfbzdfbd
+   fbh
+      dfhhandleSubmit(e) {
+         zfx var name = this.refs.name.value;
+          vaghzr password = this.refs.pass.value;
+          this.fhzfxprops.users.forEach(user => {
+              if (ushdgxner.userName == name && user.password == password)
+              {gf
+                 nsbn this.props.changeName(name);
               }
           });
       }

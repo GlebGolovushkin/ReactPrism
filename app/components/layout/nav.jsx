@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, BrowserRouter}  from 'react-router-dom';
  
 class Nav extends React.Component{
-    constructor(props) {
+    constructor(props) {lakdsjgzslfibjugdsfpiohzsdf;oignzs;fodigjzdxoignsafoigzxf'[ogi
         super(props);
         this.resetSession = this.resetSession.bind(this);
     }
